@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 export type AuthUser = {
   name: string;
@@ -16,39 +16,39 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-function getStored<T>(key: string, fallback: T): T {
-  if (typeof window === "undefined") return fallback;
-  try {
-    const v = localStorage.getItem(key);
-    return v ? JSON.parse(v) : fallback;
-  } catch {
-    return fallback;
-  }
-}
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<AuthUser | null>(() => getStored("nb_user", null));
-  const [onboardingDone, setOnboardingDoneState] = useState<boolean>(
-    () => getStored("nb_onboarding", false)
-  );
+  const [user, setUser] = useState<AuthUser | null>(null);
+  const [onboardingDone, setOnboardingDoneState] = useState(false);
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("nb_user");
+      if (stored) setUser(JSON.parse(stored));
+    } catch {}
+    try {
+      if (localStorage.getItem("nb_onboarding") === "true") setOnboardingDoneState(true);
+    } catch {}
+  }, []);
 
   const login = (u: AuthUser) => {
     setUser(u);
-    if (typeof window !== "undefined") localStorage.setItem("nb_user", JSON.stringify(u));
+    try { localStorage.setItem("nb_user", JSON.stringify(u)); } catch {}
   };
 
   const logout = () => {
     setUser(null);
     setOnboardingDoneState(false);
-    if (typeof window !== "undefined") {
+    try {
       localStorage.removeItem("nb_user");
       localStorage.removeItem("nb_onboarding");
-    }
+    } catch {}
   };
 
   const setOnboardingDone = (v: boolean) => {
     setOnboardingDoneState(v);
-    if (v && typeof window !== "undefined") localStorage.setItem("nb_onboarding", "true");
+    if (v) {
+      try { localStorage.setItem("nb_onboarding", "true"); } catch {}
+    }
   };
 
   return (
