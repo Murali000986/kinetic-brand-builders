@@ -1,26 +1,41 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SiteLayout } from "@/components/site/SiteLayout";
+import { Hero } from "@/components/site/sections/Hero";
+import { TrustedLogos } from "@/components/site/sections/TrustedLogos";
+import { Services } from "@/components/site/sections/Services";
+import { Showreel } from "@/components/site/sections/Showreel";
+import { Process } from "@/components/site/sections/Process";
+import { Portfolio } from "@/components/site/sections/Portfolio";
+import { WhyChooseUs } from "@/components/site/sections/WhyChooseUs";
+import { Testimonials } from "@/components/site/sections/Testimonials";
+import { CTA } from "@/components/site/sections/CTA";
 
 export const Route = createFileRoute("/")({
   component: Index,
+  head: () => ({
+    meta: [
+      { title: "Northbeam — Digital Agency in Chennai" },
+      {
+        name: "description",
+        content:
+          "We build digital experiences — websites, campaigns, videos and software — that help modern brands grow.",
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <SiteLayout>
+      <Hero />
+      <TrustedLogos />
+      <Services />
+      <Showreel />
+      <Process />
+      <Portfolio />
+      <WhyChooseUs />
+      <Testimonials />
+      <CTA />
+    </SiteLayout>
+  );
 }
