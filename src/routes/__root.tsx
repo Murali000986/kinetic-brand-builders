@@ -12,7 +12,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 
 import appCss from "../styles.css?url";
 
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID ?? "";
+const GOOGLE_CLIENT_ID = "898548584057-1viddhpthnu7h8lstqnm781jsl2n1b6p.apps.googleusercontent.com";
 
 function NotFoundComponent() {
   return (
