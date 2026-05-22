@@ -18,17 +18,17 @@ export const Route = createFileRoute("/portfolio")({
 
 const CATEGORIES = ["All", "Web", "Ecommerce", "Campaign", "Video", "Software"] as const;
 
-type Item = { title: string; cat: typeof CATEGORIES[number]; metric: string; gradient: string };
+type Item = { title: string; cat: typeof CATEGORIES[number]; metric: string; image: string };
 
 const ITEMS: Item[] = [
-  { title: "Lumen — Ecommerce Replatform", cat: "Ecommerce", metric: "+38% conversion", gradient: "from-[#c7d2fe] to-[#bae6fd]" },
-  { title: "Aurora — Spring Campaign", cat: "Campaign", metric: "12M impressions", gradient: "from-[#fde68a] to-[#fda4af]" },
-  { title: "Northwind — Brand Film", cat: "Video", metric: "1.8M views", gradient: "from-[#0f172a] to-[#1e293b]" },
-  { title: "Vertex — Ops Dashboard", cat: "Software", metric: "−42% time-to-insight", gradient: "from-[#0b1224] to-[#1e293b]" },
-  { title: "Helios — Marketing Site", cat: "Web", metric: "98 Lighthouse", gradient: "from-[#bbf7d0] to-[#a5f3fc]" },
-  { title: "Mosaic — D2C Launch", cat: "Ecommerce", metric: "₹2.1Cr in Q1", gradient: "from-[#fbcfe8] to-[#c4b5fd]" },
-  { title: "Quanta — Product Reel", cat: "Video", metric: "Used in 14 markets", gradient: "from-[#1e293b] to-[#4F46E5]" },
-  { title: "Parallel — Internal Suite", cat: "Software", metric: "11 modules shipped", gradient: "from-[#e0e7ff] to-[#c7d2fe]" },
+  { title: "Lumen — Ecommerce Replatform", cat: "Ecommerce", metric: "+38% conversion", image: "/portfolio/lumen.jpg" },
+  { title: "Aurora — Spring Campaign", cat: "Campaign", metric: "12M impressions", image: "/portfolio/aurora.jpg" },
+  { title: "Northwind — Brand Film", cat: "Video", metric: "1.8M views", image: "/portfolio/northwind.jpg" },
+  { title: "Vertex — Ops Dashboard", cat: "Software", metric: "−42% time-to-insight", image: "/portfolio/vertex.jpg" },
+  { title: "Helios — Marketing Site", cat: "Web", metric: "98 Lighthouse", image: "/portfolio/helios.jpg" },
+  { title: "Mosaic — D2C Launch", cat: "Ecommerce", metric: "₹2.1Cr in Q1", image: "/portfolio/mosaic.jpg" },
+  { title: "Quanta — Product Reel", cat: "Video", metric: "Used in 14 markets", image: "/portfolio/quanta.jpg" },
+  { title: "Parallel — Internal Suite", cat: "Software", metric: "11 modules shipped", image: "/portfolio/parallel.jpg" },
 ];
 
 function PortfolioPage() {
@@ -70,8 +70,13 @@ function PortfolioPage() {
                 transition={{ duration: 0.4, delay: i * 0.04 }}
                 className="group overflow-hidden rounded-3xl border border-line bg-white shadow-soft transition-all hover:-translate-y-1 hover:shadow-lift"
               >
-                <div className={`relative aspect-[16/10] bg-gradient-to-br ${p.gradient}`}>
-                  <div className="absolute inset-0 bg-[radial-gradient(50%_50%_at_30%_30%,rgba(255,255,255,0.45),transparent_60%)]" />
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src={p.image}
+                    alt={p.title}
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-[radial-gradient(50%_50%_at_30%_30%,rgba(255,255,255,0.12),transparent_60%)]" />
                   <span className="absolute left-5 top-5 rounded-full bg-white/85 px-3 py-1 text-[11.5px] font-500 uppercase tracking-wider text-ink backdrop-blur">
                     {p.cat}
                   </span>

@@ -1,0 +1,50 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "BYR5rZtBuOiMBvyYqayqG"
+uri = "file://attached_assets/stock_images/lumen_ecommerce.jpg"
+type = "image"
+title = "ecommerce website product grid shopify online store"
+
+[[outputs]]
+id = "wd71GURb8NirCL_v_EWgV"
+uri = "file://attached_assets/stock_images/aurora_campaign.jpg"
+type = "image"
+title = "spring fashion brand campaign colorful advertising creative"
+
+[[outputs]]
+id = "fApMLF7cPw7FSzk9hT52P"
+uri = "file://attached_assets/stock_images/northwind_film.jpg"
+type = "image"
+title = "cinematic brand film video production dark dramatic"
+
+[[outputs]]
+id = "Vzkqcma8n097wZi1jRs4b"
+uri = "file://attached_assets/stock_images/vertex_dashboard.jpg"
+type = "image"
+title = "dark analytics saas dashboard data visualization software"
+
+[[outputs]]
+id = "lyUi0NUEEMwvQtgEy3m7q"
+uri = "file://attached_assets/stock_images/helios_web.jpg"
+type = "image"
+title = "modern clean marketing website landing page design"
+
+[[outputs]]
+id = "akDeCyLKPQ2o5FIMosIhn"
+uri = "file://attached_assets/stock_images/mosaic_launch.jpg"
+type = "image"
+title = "D2C direct to consumer product launch ecommerce packaging"
+
+[[outputs]]
+id = "6S2JoDGm4ehp31-H0Rp9q"
+uri = "file://attached_assets/stock_images/quanta_reel.jpg"
+type = "image"
+title = "product video reel commercial shoot studio creative"
+
+[[outputs]]
+id = "E6coO0v5K5L612lDbYl4m"
+uri = "file://attached_assets/stock_images/parallel_suite.jpg"
+type = "image"
+title = "enterprise software internal tools suite office technology"
