@@ -9,22 +9,31 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as StoriesRouteImport } from './routes/stories'
 import { Route as ServicesRouteImport } from './routes/services'
-import { Route as PortfolioRouteImport } from './routes/portfolio'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StoriesSlugRouteImport } from './routes/stories_.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog_.$slug'
 
+const StoriesRoute = StoriesRouteImport.update({
+  id: '/stories',
+  path: '/stories',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PortfolioRoute = PortfolioRouteImport.update({
-  id: '/portfolio',
-  path: '/portfolio',
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -42,6 +51,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -52,77 +66,122 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StoriesSlugRoute = StoriesSlugRouteImport.update({
+  id: '/stories_/$slug',
+  path: '/stories/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog_/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
-  '/portfolio': typeof PortfolioRoute
+  '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
+  '/stories': typeof StoriesRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/stories/$slug': typeof StoriesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
-  '/portfolio': typeof PortfolioRoute
+  '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
+  '/stories': typeof StoriesRoute
+  '/blog/$slug': typeof BlogSlugRoute
+  '/stories/$slug': typeof StoriesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/blog': typeof BlogRoute
   '/contact': typeof ContactRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
-  '/portfolio': typeof PortfolioRoute
+  '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
+  '/stories': typeof StoriesRoute
+  '/blog_/$slug': typeof BlogSlugRoute
+  '/stories_/$slug': typeof StoriesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/blog'
     | '/contact'
     | '/login'
     | '/onboarding'
-    | '/portfolio'
+    | '/privacy'
     | '/services'
+    | '/stories'
+    | '/blog/$slug'
+    | '/stories/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/blog'
     | '/contact'
     | '/login'
     | '/onboarding'
-    | '/portfolio'
+    | '/privacy'
     | '/services'
+    | '/stories'
+    | '/blog/$slug'
+    | '/stories/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
+    | '/blog'
     | '/contact'
     | '/login'
     | '/onboarding'
-    | '/portfolio'
+    | '/privacy'
     | '/services'
+    | '/stories'
+    | '/blog_/$slug'
+    | '/stories_/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BlogRoute: typeof BlogRoute
   ContactRoute: typeof ContactRoute
   LoginRoute: typeof LoginRoute
   OnboardingRoute: typeof OnboardingRoute
-  PortfolioRoute: typeof PortfolioRoute
+  PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
+  StoriesRoute: typeof StoriesRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  StoriesSlugRoute: typeof StoriesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/stories': {
+      id: '/stories'
+      path: '/stories'
+      fullPath: '/stories'
+      preLoaderRoute: typeof StoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -130,11 +189,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/portfolio': {
-      id: '/portfolio'
-      path: '/portfolio'
-      fullPath: '/portfolio'
-      preLoaderRoute: typeof PortfolioRouteImport
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -158,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -172,17 +238,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stories_/$slug': {
+      id: '/stories_/$slug'
+      path: '/stories/$slug'
+      fullPath: '/stories/$slug'
+      preLoaderRoute: typeof StoriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog_/$slug': {
+      id: '/blog_/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BlogRoute: BlogRoute,
   ContactRoute: ContactRoute,
   LoginRoute: LoginRoute,
   OnboardingRoute: OnboardingRoute,
-  PortfolioRoute: PortfolioRoute,
+  PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,
+  StoriesRoute: StoriesRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  StoriesSlugRoute: StoriesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -8,8 +8,9 @@ export const Route = createFileRoute("/about")({
   component: AboutPage,
   head: () => ({
     meta: [
-      { title: "About — Northbeam Digital Agency Chennai" },
-      { name: "description", content: "A small, senior studio in Chennai building digital experiences for modern brands." },
+      { title: "About BASK — Digital Agency | Our Story, Team & Values" },
+      { name: "description", content: "Learn about BASK, a full-service digital agency. We are a small senior team of designers, developers and strategists helping brands grow worldwide." },
+      { name: "keywords", content: "about BASK, BASK digital agency team, BASK story, BASK studio, digital agency team, web development agency" },
     ],
   }),
 });
@@ -29,9 +30,9 @@ const TEAM = [
 ];
 
 const STATS = [
-  { v: "9 yrs", l: "in business" },
-  { v: "120+", l: "brands shipped" },
-  { v: "18", l: "people on the team" },
+  { v: "2 yrs", l: "in business" },
+  { v: "20+", l: "clients" },
+  { v: "10+", l: "people on the team" },
   { v: "4.9★", l: "avg client rating" },
 ];
 
@@ -41,7 +42,7 @@ function AboutPage() {
       <PageHeader
         eyebrow="About"
         title="A small studio building things that matter."
-        subtitle="We're a senior team of strategists, designers, editors and engineers based in Chennai, working with ambitious teams across India and the world."
+        subtitle="We're a senior team of strategists, designers, editors and engineers, working with ambitious teams across the world."
       />
 
       <section className="section-y">
@@ -49,12 +50,12 @@ function AboutPage() {
           <div>
             <p className="text-[12px] font-600 uppercase tracking-[0.16em] text-brand">Our story</p>
             <h2 className="mt-3 font-display text-[32px] font-700 tracking-[-0.02em] text-ink sm:text-[40px] text-balance">
-              Started as a two-person studio in 2017. Same care, more capability.
+              Started as a two-person studio in 2024. Same care, more capability.
             </h2>
             <div className="mt-6 space-y-4 text-[15.5px] leading-relaxed text-ink-soft">
               <p>
-                Northbeam began as a small design partnership working with
-                early-stage founders. Nine years on, we're a multi-disciplinary
+                BASK began as a small design partnership working with
+                early-stage founders. Two years on, we're a multi-disciplinary
                 studio — but the operating principles are the same: senior
                 people, clear thinking, careful craft.
               </p>

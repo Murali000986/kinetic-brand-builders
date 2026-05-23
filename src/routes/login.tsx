@@ -43,7 +43,7 @@ function LoginPage() {
             Welcome back
           </h1>
           <p className="mt-2 text-[14.5px] text-ink-soft">
-            Sign in to start your project brief with Northbeam.
+            Sign in to start your project brief with BASK.
           </p>
 
           <button
@@ -67,7 +67,7 @@ function LoginPage() {
 
         <p className="mt-6 text-center text-[13px] text-ink-muted">
           <a href="/" className="underline underline-offset-2 hover:text-ink">
-            ← Back to Northbeam
+            ← Back to BASK
           </a>
         </p>
       </div>

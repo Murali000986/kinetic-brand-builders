@@ -32,7 +32,7 @@ export function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand opacity-60" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-brand" />
               </span>
-              Digital Growth Partner · Chennai
+              Digital Growth Partner
             </motion.div>
 
             <motion.h1
@@ -149,7 +149,7 @@ function HeroVisual({ reduce }: { reduce: boolean }) {
             <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
           </div>
           <div className="flex items-center gap-2 rounded-md bg-surface-muted px-2.5 py-1 text-[11.5px] text-ink-muted">
-            <Globe className="h-3 w-3" /> northbeam.studio/dashboard
+            <Globe className="h-3 w-3" /> bask.studio/dashboard
           </div>
           <div className="h-5 w-5" />
         </div>

@@ -9,8 +9,9 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
   head: () => ({
     meta: [
-      { title: "Contact — Northbeam Digital Agency Chennai" },
-      { name: "description", content: "Start a project with Northbeam. Get in touch by form, email, phone or WhatsApp." },
+      { title: "Contact BASK — Start a Project | Book a Free Call" },
+      { name: "description", content: "Get in touch with BASK to start your next web development, digital marketing, video or software project. Book a free call via WhatsApp or fill out the form." },
+      { name: "keywords", content: "contact BASK, start a project with BASK, hire digital agency, book free call, web development inquiry, digital marketing inquiry" },
     ],
   }),
 });
@@ -20,7 +21,6 @@ type FormValues = {
   email: string;
   company?: string;
   service: string;
-  budget: string;
   message: string;
 };
 
@@ -32,14 +32,29 @@ function ContactPage() {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<FormValues>({
-    defaultValues: { service: "Web Development", budget: "₹2L – ₹5L" },
+    defaultValues: { service: "Web Development" },
   });
 
   const onSubmit = async (data: FormValues) => {
-    await new Promise((r) => setTimeout(r, 600));
-    console.log("Contact submission", data);
-    setSent(true);
-    reset();
+    try {
+      await fetch("https://formsubmit.co/ajax/murali701081@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          _subject: "New Contact Form Submission - BASK",
+          _template: "table",
+        }),
+      });
+      setSent(true);
+      reset();
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("Failed to send message. Please try again later.");
+    }
   };
 
   return (
@@ -99,13 +114,6 @@ function ContactPage() {
                     ))}
                   </select>
                 </Field>
-                <Field label="Budget" className="sm:col-span-2">
-                  <select {...register("budget")} className="input">
-                    {["< ₹2L","₹2L – ₹5L","₹5L – ₹15L","₹15L+","Not sure yet"].map((o) => (
-                      <option key={o}>{o}</option>
-                    ))}
-                  </select>
-                </Field>
                 <Field label="Project details" error={errors.message?.message} className="sm:col-span-2">
                   <textarea
                     rows={5}
@@ -129,18 +137,16 @@ function ContactPage() {
           </div>
 
           <aside className="space-y-4">
-            <InfoCard icon={MapPin} title="Studio">
-              Northbeam Studio<br />Anna Salai, Chennai, India
-            </InfoCard>
+
             <InfoCard icon={Mail} title="Email">
-              <a href="mailto:hello@northbeam.studio" className="hover:text-ink">hello@northbeam.studio</a>
+              <a href="mailto:murali701081@gmail.com" className="hover:text-ink">murali701081@gmail.com</a>
             </InfoCard>
             <InfoCard icon={Phone} title="Phone">
-              <a href="tel:+919800000000" className="hover:text-ink">+91 98000 00000</a>
+              <a href="tel:+919042846208" className="hover:text-ink">+91-9042846208</a>
             </InfoCard>
 
             <a
-              href="https://wa.me/919800000000"
+              href="https://wa.me/919042846208"
               target="_blank"
               rel="noreferrer"
               className="group flex items-center justify-between gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 transition-all hover:shadow-soft"
@@ -156,19 +162,6 @@ function ContactPage() {
               </div>
               <ArrowUpRight className="h-4 w-4 text-ink-soft transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
-
-            <div className="overflow-hidden rounded-2xl border border-line bg-white shadow-soft">
-              <div className="relative aspect-[4/3] w-full bg-[radial-gradient(60%_60%_at_50%_50%,#dbeafe,#f1f5f9)]">
-                <div className="absolute inset-0 grid-faint" />
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
-                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand text-white shadow-lift">
-                    <MapPin className="h-5 w-5" />
-                  </div>
-                  <p className="mt-2 font-display text-[15px] font-700 text-ink">Chennai, India</p>
-                  <p className="text-[12px] text-ink-muted">13.0827° N, 80.2707° E</p>
-                </div>
-              </div>
-            </div>
           </aside>
         </div>
       </section>

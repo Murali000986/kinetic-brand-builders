@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block non-public routes
+Disallow: /login
+Disallow: /onboarding
+
+# Sitemap location
+Sitemap: https://bask.studio/sitemap.xml

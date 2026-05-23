@@ -76,34 +76,77 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Digital Agency Chennai | Web Development, Marketing, Video Production" },
-      {
-        name: "description",
-        content:
-          "Professional digital agency in Chennai offering digital marketing, video production, web & software development, and ecommerce websites.",
-      },
+      { name: "robots", content: "index, follow" },
+      { name: "googlebot", content: "index, follow" },
+      { name: "theme-color", content: "#4f46e5" },
+      { name: "author", content: "BASK" },
       {
         name: "keywords",
         content:
-          "digital agency Chennai, web development Chennai, digital marketing agency, video production Chennai, software development, ecommerce website development",
+          "BASK, BASK digital agency, BASK web development, BASK web dev, bask studio, digital marketing agency, web development company, web design, software development, video production, ecommerce website, SEO agency, social media marketing, brand design, UI UX design",
       },
-      { name: "author", content: "Northbeam Studio" },
-      { property: "og:title", content: "Northbeam — Digital Agency, Chennai" },
+      // Open Graph
+      { property: "og:site_name", content: "BASK" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://bask.studio" },
+      { property: "og:title", content: "BASK — Digital Agency | Web Dev, Marketing & Video" },
       {
         property: "og:description",
         content:
-          "We build digital experiences — websites, campaigns, videos and software — that help modern brands grow.",
+          "BASK is a full-service digital agency offering web development, digital marketing, video production, software development and ecommerce. Helping brands grow worldwide.",
       },
-      { property: "og:type", content: "website" },
+      // Twitter Card
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:site", content: "@baskstudio" },
+      { name: "twitter:title", content: "BASK — Digital Agency | Web Dev, Marketing & Video" },
+      {
+        name: "twitter:description",
+        content:
+          "BASK is a full-service digital agency offering web development, digital marketing, video production, software development and ecommerce. Helping brands grow worldwide.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: "https://bask.studio" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "BASK",
+          url: "https://bask.studio",
+          logo: "https://bask.studio/logo.png",
+          description:
+            "BASK is a full-service digital agency offering web development, digital marketing, video production, software development and ecommerce.",
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+91-9042846208",
+            email: "murali701081@gmail.com",
+            contactType: "customer service",
+          },
+          sameAs: [
+            "https://www.instagram.com/mr_dine_tn29/",
+            "https://www.linkedin.com/in/murali-n-8316b0390/",
+            "https://www.youtube.com/@dineshvlogs..2",
+          ],
+          service: [
+            "Web Development",
+            "Digital Marketing",
+            "Video Production",
+            "Software Development",
+            "Ecommerce Website Development",
+            "SEO",
+            "Brand Design",
+          ],
+        }),
       },
     ],
   }),

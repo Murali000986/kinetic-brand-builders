@@ -6,7 +6,6 @@ export type EnquiryData = {
   email: string;
   phone: string;
   service: string;
-  budget: string;
   timeline: string;
   stage: string;
   source: string;
@@ -62,30 +61,28 @@ export const sendEnquiry = createServerFn({ method: "POST" })
   <div class="wrap">
     <div class="header">
       <h1>New Project Enquiry</h1>
-      <p>Submitted via Northbeam website onboarding</p>
+      <p>Submitted via BASK website onboarding</p>
     </div>
     <div class="body">
       <div class="row"><span class="label">Name</span><span class="value">${data.name}</span></div>
       <div class="row"><span class="label">Email</span><span class="value">${data.email}</span></div>
       <div class="row"><span class="label">Phone</span><span class="value">${data.phone}</span></div>
       <div class="row"><span class="label">Service</span><span class="value">${serviceMap[data.service] ?? data.service}</span></div>
-      <div class="row"><span class="label">Budget</span><span class="value">${data.budget}</span></div>
       <div class="row"><span class="label">Timeline</span><span class="value">${timelineMap[data.timeline] ?? data.timeline}</span></div>
       <div class="row"><span class="label">Business Stage</span><span class="value">${stageMap[data.stage] ?? data.stage}</span></div>
       <div class="row"><span class="label">Found via</span><span class="value">${sourceMap[data.source] ?? data.source}</span></div>
     </div>
-    <div class="footer">Northbeam Studio · Chennai · northbeam.studio</div>
+    <div class="footer">BASK · bask.studio</div>
   </div>
 </body>
 </html>`;
 
-    const text = `New Project Enquiry — Northbeam
+    const text = `New Project Enquiry — BASK
 
 Name: ${data.name}
 Email: ${data.email}
 Phone: ${data.phone}
 Service: ${serviceMap[data.service] ?? data.service}
-Budget: ${data.budget}
 Timeline: ${timelineMap[data.timeline] ?? data.timeline}
 Business Stage: ${stageMap[data.stage] ?? data.stage}
 Found via: ${sourceMap[data.source] ?? data.source}`;

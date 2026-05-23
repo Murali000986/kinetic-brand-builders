@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const TESTIMONIALS = [
   {
     quote:
-      "Northbeam ran our replatform with calm precision. We launched faster than planned and revenue is up almost 40%.",
+      "BASK ran our replatform with calm precision. We launched faster than planned and revenue is up almost 40%.",
     name: "Priya Raghavan",
     role: "VP Marketing, Lumen",
     initials: "PR",

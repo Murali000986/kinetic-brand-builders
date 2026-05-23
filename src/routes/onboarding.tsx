@@ -3,7 +3,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/contexts/AuthContext";
 import { Logo } from "@/components/site/Logo";
-import { ArrowRight, Check, IndianRupee, Phone, Loader2 } from "lucide-react";
+import { ArrowRight, Check, Phone, Loader2 } from "lucide-react";
 import { sendEnquiry } from "@/lib/sendEnquiry";
 
 export const Route = createFileRoute("/onboarding")({
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/onboarding")({
 
 type StepBase = { id: string; question: string; hint: string };
 type SingleStep = StepBase & { type: "single"; options: { value: string; label: string; icon: string }[] };
-type TextStep = StepBase & { type: "text"; placeholder: string; inputType?: string; icon?: "rupee" | "phone" };
+type TextStep = StepBase & { type: "text"; placeholder: string; inputType?: string; icon?: "phone" };
 type Step = SingleStep | TextStep;
 
 const STEPS: Step[] = [
@@ -29,14 +29,7 @@ const STEPS: Step[] = [
       { value: "software", label: "Software / App", icon: "💻" },
     ],
   },
-  {
-    id: "budget",
-    question: "What's your affordable price?",
-    hint: "Just give us a rough number — there's no wrong answer.",
-    type: "text",
-    placeholder: "e.g. 80,000 or 2 lakhs",
-    icon: "rupee",
-  },
+
   {
     id: "timeline",
     question: "When do you need this delivered?",
@@ -63,7 +56,7 @@ const STEPS: Step[] = [
   },
   {
     id: "source",
-    question: "How did you hear about Northbeam?",
+    question: "How did you hear about BASK?",
     hint: "We love knowing where our projects come from.",
     type: "single",
     options: [
@@ -113,17 +106,23 @@ function OnboardingPage() {
       setSending(true);
       setError(null);
       try {
-        await sendEnquiry({
-          data: {
+        await fetch("https://formsubmit.co/ajax/murali701081@gmail.com", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
             name: user?.name ?? "Unknown",
             email: user?.email ?? "Unknown",
             phone: answers.phone ?? "",
             service: answers.service ?? "",
-            budget: answers.budget ?? "",
             timeline: answers.timeline ?? "",
             stage: answers.stage ?? "",
             source: answers.source ?? "",
-          },
+            _subject: "New Onboarding Request - BASK",
+            _template: "table",
+          }),
         });
         setOnboardingDone(true);
         setDone(true);
@@ -158,7 +157,7 @@ function OnboardingPage() {
             onClick={() => navigate({ to: "/" })}
             className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-6 py-3.5 text-[15px] font-600 text-white transition-all hover:bg-ink/90 hover:shadow-lift"
           >
-            Explore Northbeam <ArrowRight className="h-4 w-4" />
+            Explore BASK <ArrowRight className="h-4 w-4" />
           </button>
         </motion.div>
       </div>
@@ -209,9 +208,7 @@ function OnboardingPage() {
               {current.type === "text" ? (
                 <div className="mt-6">
                   <div className="flex items-center gap-3 rounded-2xl border border-line bg-surface-muted/40 px-4 py-3.5 focus-within:border-brand focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(79,70,229,0.08)] transition-all">
-                    {(current as TextStep).icon === "rupee" && (
-                      <IndianRupee className="h-5 w-5 shrink-0 text-ink-muted" />
-                    )}
+
                     {(current as TextStep).icon === "phone" && (
                       <Phone className="h-5 w-5 shrink-0 text-ink-muted" />
                     )}

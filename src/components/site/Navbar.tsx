@@ -7,7 +7,8 @@ import { useAuth } from "@/contexts/AuthContext";
 const NAV = [
   { label: "Home", to: "/" },
   { label: "Services", to: "/services" },
-  { label: "Work", to: "/portfolio" },
+  { label: "Stories", to: "/stories" },
+  { label: "Blog", to: "/blog" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ] as const;
@@ -16,7 +17,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [avatarMenu, setAvatarMenu] = useState(false);
-  const { user, logout, onboardingDone } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,15 +31,7 @@ export function Navbar() {
     document.documentElement.style.overflow = open ? "hidden" : "";
   }, [open]);
 
-  const handleStartProject = () => {
-    if (!user) {
-      navigate({ to: "/login" });
-    } else if (!onboardingDone) {
-      navigate({ to: "/onboarding" });
-    } else {
-      navigate({ to: "/contact" });
-    }
-  };
+
 
   const handleLogout = () => {
     logout();
@@ -109,24 +102,23 @@ export function Navbar() {
               )}
             </div>
           ) : (
-            <button
-              onClick={handleStartProject}
-              className="group inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-[14px] font-500 text-white transition-all hover:bg-ink/90 hover:shadow-lift"
+            <Link
+              to="/login"
+              className="rounded-full px-4 py-2 text-[14px] font-500 text-ink-soft hover:text-ink hover:bg-surface-muted transition-colors"
             >
-              Start Project
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </button>
+              Login
+            </Link>
           )}
 
-          {user && (
-            <button
-              onClick={handleStartProject}
-              className="group inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-[14px] font-500 text-white transition-all hover:bg-ink/90 hover:shadow-lift"
-            >
-              Start Project
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </button>
-          )}
+          <a
+            href="https://wa.me/919800000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-ink px-4 py-2 text-[14px] font-500 text-white transition-all hover:bg-ink/90 hover:shadow-lift"
+          >
+            Start Project
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+          </a>
         </div>
 
         <button
@@ -141,7 +133,7 @@ export function Navbar() {
       {open && (
         <div className="md:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-white">
           <div className="container-page flex h-full flex-col gap-2 py-8">
-            {user && (
+            {user ? (
               <div className="mb-2 flex items-center gap-3 rounded-2xl border border-line bg-surface-muted/60 px-5 py-4">
                 <img src={user.picture} alt={user.name} className="h-10 w-10 rounded-full object-cover" />
                 <div>
@@ -149,6 +141,14 @@ export function Navbar() {
                   <p className="text-[12px] text-ink-muted">{user.email}</p>
                 </div>
               </div>
+            ) : (
+              <Link
+                to="/login"
+                onClick={() => setOpen(false)}
+                className="mb-4 rounded-2xl border border-line bg-surface-muted/30 px-5 py-4 text-lg font-600 text-ink text-center"
+              >
+                Login
+              </Link>
             )}
             {NAV.map((item) => (
               <Link
@@ -160,12 +160,15 @@ export function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <button
-              onClick={() => { setOpen(false); handleStartProject(); }}
+            <a
+              href="https://wa.me/919800000000"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-1.5 rounded-2xl bg-ink px-5 py-4 text-base font-600 text-white"
             >
               Start Project <ArrowUpRight className="h-4 w-4" />
-            </button>
+            </a>
             {user && (
               <button
                 onClick={() => { setOpen(false); handleLogout(); }}

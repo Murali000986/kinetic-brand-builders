@@ -17,8 +17,9 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
   head: () => ({
     meta: [
-      { title: "Services — Northbeam Digital Agency Chennai" },
-      { name: "description", content: "Digital marketing, video production, web & software development, and ecommerce websites — built by a senior studio in Chennai." },
+      { title: "Services — BASK | Web Development, Digital Marketing, Video & Software" },
+      { name: "description", content: "BASK offers web development, digital marketing, SEO, video production, software development and ecommerce. Senior-level work, senior-level results." },
+      { name: "keywords", content: "BASK services, web development service, digital marketing service, video production service, software development service, ecommerce development, SEO service, brand design" },
     ],
   }),
 });
@@ -34,9 +35,9 @@ const SERVICES = [
 
 const FAQS = [
   { q: "What does a typical engagement look like?", a: "Most engagements start with a 2-week discovery, followed by a fixed-scope build (4–12 weeks) and an optional growth retainer after launch." },
-  { q: "Do you work with international clients?", a: "Yes. We're based in Chennai and work with teams across India, the UK, EU and US — async-friendly with weekly demos." },
+  { q: "Do you work with international clients?", a: "Yes. We work with teams across the UK, EU and US — async-friendly with weekly demos." },
   { q: "Can you join an existing team?", a: "Yes. We embed cleanly with in-house product, brand and marketing teams when needed." },
-  { q: "How do you price projects?", a: "Fixed-scope for builds, monthly retainers for growth and media work. We share clear estimates after discovery." },
+  { q: "How do you price projects?", a: "We work on fixed-scope engagements for builds and retainers for ongoing growth work. Get in touch and we'll share a tailored estimate after a discovery call." },
 ];
 
 function ServicesPage() {
@@ -63,7 +64,7 @@ function ServicesPage() {
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-soft text-brand">
                   <s.icon className="h-5 w-5" />
                 </span>
-                <span className="text-[12px] font-500 uppercase tracking-wider text-ink-muted">From ₹1.2L</span>
+
               </div>
               <h3 className="mt-6 font-display text-[22px] font-700 text-ink">{s.title}</h3>
               <p className="mt-2 text-[14.5px] leading-relaxed text-ink-muted">{s.desc}</p>
