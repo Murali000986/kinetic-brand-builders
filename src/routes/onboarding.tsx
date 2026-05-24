@@ -131,7 +131,7 @@ function OnboardingPage() {
         if (!res.ok) throw new Error("Fetch failed");
 
         setOnboardingDone(true);
-        navigate({ to: "/" });
+        window.location.href = "https://www.mrixtech.in/";
       } catch (e) {
         console.warn("AJAX failed, falling back to standard form submission to allow email verification...", e);
         
@@ -145,7 +145,7 @@ function OnboardingPage() {
         const nextInput = document.createElement('input');
         nextInput.type = 'hidden';
         nextInput.name = '_next';
-        nextInput.value = window.location.origin;
+        nextInput.value = 'https://www.mrixtech.in/';
         form.appendChild(nextInput);
 
         // Add captcha disable (optional, but helps UX)
