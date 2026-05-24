@@ -58,36 +58,7 @@ function ContactPage() {
       reset();
     } catch (error) {
       console.warn("Submission error:", error);
-      
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = 'https://formsubmit.co/murali701081@gmail.com';
-      form.style.display = 'none';
-
-      const nextInput = document.createElement('input');
-      nextInput.type = 'hidden';
-      nextInput.name = '_next';
-      nextInput.value = 'https://www.mrixtech.in/';
-      form.appendChild(nextInput);
-
-      const captchaInput = document.createElement('input');
-      captchaInput.type = 'hidden';
-      captchaInput.name = '_captcha';
-      captchaInput.value = 'false';
-      form.appendChild(captchaInput);
-
-      for (const [key, value] of Object.entries(payload)) {
-        if (value !== undefined) {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = value as string;
-          form.appendChild(input);
-        }
-      }
-
-      document.body.appendChild(form);
-      form.submit();
+      alert("FormSubmit.co is currently down. Please try again later.");
     }
   };
 

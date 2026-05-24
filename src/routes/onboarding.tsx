@@ -133,38 +133,8 @@ function OnboardingPage() {
         setOnboardingDone(true);
         window.location.href = "https://www.mrixtech.in/";
       } catch (e) {
-        console.warn("AJAX failed, falling back to standard form submission to allow email verification...", e);
-        
-        // Fallback to standard form submission to trigger FormSubmit's activation email
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'https://formsubmit.co/murali701081@gmail.com';
-        form.style.display = 'none';
-
-        // Add next param so it redirects back to the site
-        const nextInput = document.createElement('input');
-        nextInput.type = 'hidden';
-        nextInput.name = '_next';
-        nextInput.value = 'https://www.mrixtech.in/';
-        form.appendChild(nextInput);
-
-        // Add captcha disable (optional, but helps UX)
-        const captchaInput = document.createElement('input');
-        captchaInput.type = 'hidden';
-        captchaInput.name = '_captcha';
-        captchaInput.value = 'false';
-        form.appendChild(captchaInput);
-
-        for (const [key, value] of Object.entries(payload)) {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = value as string;
-          form.appendChild(input);
-        }
-
-        document.body.appendChild(form);
-        form.submit();
+        console.warn("AJAX failed", e);
+        setError("FormSubmit.co is currently down. Please try again later.");
       } finally {
         setSending(false);
       }
