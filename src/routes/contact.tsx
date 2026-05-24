@@ -36,24 +36,58 @@ function ContactPage() {
   });
 
   const onSubmit = async (data: FormValues) => {
+    const payload = {
+      ...data,
+      _subject: "New Contact Form Submission - BASK",
+      _template: "table",
+    };
+
     try {
-      await fetch("https://formsubmit.co/ajax/murali701081@gmail.com", {
+      const res = await fetch("https://formsubmit.co/ajax/murali701081@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify({
-          ...data,
-          _subject: "New Contact Form Submission - BASK",
-          _template: "table",
-        }),
+        body: JSON.stringify(payload),
       });
+      
+      if (!res.ok) throw new Error("Fetch failed");
+      
       setSent(true);
       reset();
     } catch (error) {
-      console.error("Submission error:", error);
-      alert("Failed to send message. Please try again later.");
+      console.warn("Submission error:", error);
+      
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://formsubmit.co/murali701081@gmail.com';
+      form.style.display = 'none';
+
+      const nextInput = document.createElement('input');
+      nextInput.type = 'hidden';
+      nextInput.name = '_next';
+      nextInput.value = 'https://www.mrixtech.in/';
+      form.appendChild(nextInput);
+
+      const captchaInput = document.createElement('input');
+      captchaInput.type = 'hidden';
+      captchaInput.name = '_captcha';
+      captchaInput.value = 'false';
+      form.appendChild(captchaInput);
+
+      for (const [key, value] of Object.entries(payload)) {
+        if (value !== undefined) {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value as string;
+          form.appendChild(input);
+        }
+      }
+
+      document.body.appendChild(form);
+      form.submit();
     }
   };
 
