@@ -18,17 +18,23 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<AuthUser | null>(null);
-  const [onboardingDone, setOnboardingDoneState] = useState(false);
-
-  useEffect(() => {
+  const [user, setUser] = useState<AuthUser | null>(() => {
     try {
       const stored = localStorage.getItem("nb_user");
-      if (stored) setUser(JSON.parse(stored));
+      if (stored) return JSON.parse(stored);
     } catch {}
+    return null;
+  });
+
+  const [onboardingDone, setOnboardingDoneState] = useState(() => {
     try {
-      if (localStorage.getItem("nb_onboarding") === "true") setOnboardingDoneState(true);
+      return localStorage.getItem("nb_onboarding") === "true";
     } catch {}
+    return false;
+  });
+
+  useEffect(() => {
+    // any side effects on mount
   }, []);
 
   const login = (u: AuthUser) => {
